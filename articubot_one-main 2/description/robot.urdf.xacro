@@ -297,6 +297,12 @@
                 </clip>
             </camera>
             <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <ros>
+                    <namespace>/</namespace>
+                    <remapping>image_raw:=camera/image_raw</remapping>
+                    <remapping>camera_info:=camera/camera_info</remapping>
+                </ros>
+                <camera_name>camera</camera_name>
                 <frame_name>camera_link_optical</frame_name>
             </plugin>
         </sensor>
@@ -310,7 +316,7 @@
 
     <link name="camera_link_optical"></link>
 
-    <!-- GAZEBO CONTROL FOR 4-WHEEL SKID STEER -->
+    <!-- GAZEBO CONTROL FOR 4-WHEEL SKID STEER (FOXY COMPATIBLE) -->
     <gazebo>
         <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
             <update_rate>50</update_rate>
@@ -318,12 +324,17 @@
             <left_front_joint>front_left_wheel_joint</left_front_joint>
             <right_front_joint>front_right_wheel_joint</right_front_joint>
             <left_rear_joint>rear_left_wheel_joint</left_rear_joint>
-            <right_rear_joint>rear_right_wheel_joint</right_rear_joint>
+            <right_rear_joint>rear_right_wheel_joint</right_rear_right_joint>
             <wheel_separation>0.35</wheel_separation>
             <wheel_diameter>0.1</wheel_diameter>
             <robot_base_frame>base_link</robot_base_frame>
             <topic_name>cmd_vel</topic_name>
             <broadcast_tf>true</broadcast_tf>
+            <ros>
+                <namespace>/</namespace>
+                <remapping>cmd_vel:=cmd_vel</remapping>
+                <remapping>odom:=odom</remapping>
+            </ros>
         </plugin>
     </gazebo>
 
